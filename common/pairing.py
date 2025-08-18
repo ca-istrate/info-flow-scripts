@@ -16,6 +16,9 @@ class Pairing:
 
 
     def __init__(self, x, y, *, start=0, end=None, shift=0):
+        if len(x[:,1]) != len(y[:,1]):
+            logger.warning("Warning: The two inputs do not have the same number of rows.")
+
         if shift < 0:
             logger.debug(f"Shift {shift} is negative. Dropping {-shift} values from the beginning of y.")
             self.x = x[:,1]
