@@ -222,7 +222,7 @@ def single_row_output(args, data, row, matrices):
                 f"{p_value:.20f} .")
             else:
                 logger.info(f" T {typ} nu difera semnificativ fata de 0. p_value = "
-                f"{p_value:.20f}  < {alpha} (alpha)")
+                f"{p_value:.20f}  > {alpha} (alpha)")
         else: # T >= 0
             p_value = 1 - norm.cdf(x)
     
