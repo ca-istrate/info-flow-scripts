@@ -139,7 +139,7 @@ def theoretical(data, args):
 
     sigma_a12_patrat = I_Fischer_inv[2][2]
 
-    dist_interval_2_1 = k_alpha * C12 / C11 * np.sqrt(sigma_a12_patrat)
+    dist_interval_2_1 = np.abs(k_alpha * C12 / C11 * np.sqrt(sigma_a12_patrat))
 
     low_2_1   = T2_1 - dist_interval_2_1
     upper_2_1 = T2_1 + dist_interval_2_1
@@ -184,7 +184,7 @@ def theoretical(data, args):
 
     sigma_a21_patrat = I_Fischer_inv[1][1]
 
-    dist_interval_1_2 = k_alpha * C12 / C22 * np.sqrt(sigma_a21_patrat)
+    dist_interval_1_2 = np.abs(k_alpha * C12 / C22 * np.sqrt(sigma_a21_patrat))
 
     low_1_2   = T1_2 - dist_interval_1_2
     upper_1_2 = T1_2 + dist_interval_1_2
