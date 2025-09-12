@@ -235,20 +235,20 @@ def single_row_output(args, data, row, matrices):
                 f"{p_value:.20f}  > {alpha} (alpha)")
         logger.info("")
 
-        _1st = "1"
-        _2nd = "2"
-
-        if typ == "2->1":
-            _1st = "2"
-            _2nd = "1"
-    
-        if 0.10 <= p_value < 0.15:
-            logger.info(f"\tExista o cauzalitate slaba intre factorul X{_1st} si factorul X{_2nd}. (0.10 <= p_value = {p_value:.20f} < 0.15)")
-        elif 0.05 <= p_value < 0.10:
-            logger.info(f"\tExista o cauzalitate normala intre factorul X{_1st} si factorul X{_2nd}. (0.05 <= p_value = {p_value:.20f} < 0.10)")
-        elif p_value < 0.05:
-            logger.info(f"\tExista o cauzalitate puternica intre factorul X{_1st} si factorul X{_2nd}. (p_value = {p_value:.20f} < 0.05)")
-        logger.info("")
+        # _1st = "1"
+        # _2nd = "2"
+        #
+        # if typ == "2->1":
+        #     _1st = "2"
+        #     _2nd = "1"
+        #
+        # if 0.10 <= p_value < 0.15:
+        #     logger.info(f"\tExista o cauzalitate slaba intre factorul X{_1st} si factorul X{_2nd}. (0.10 <= p_value = {p_value:.20f} < 0.15)")
+        # elif 0.05 <= p_value < 0.10:
+        #     logger.info(f"\tExista o cauzalitate normala intre factorul X{_1st} si factorul X{_2nd}. (0.05 <= p_value = {p_value:.20f} < 0.10)")
+        # elif p_value < 0.05:
+        #     logger.info(f"\tExista o cauzalitate puternica intre factorul X{_1st} si factorul X{_2nd}. (p_value = {p_value:.20f} < 0.05)")
+        # logger.info("")
 
     logger.info(f"Rezultate teoretice\n")
     logger.info(f" T 1->2 : {row.loc[0, 'T12_theo']} \u00b1 {row.loc[0, 'T12_int_dist']}")
