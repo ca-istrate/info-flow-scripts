@@ -20,7 +20,7 @@ def default_output_file(args) -> None:
 
 
 def calculate_p_value(T, x):
-    if T < 0:
+    if x < 0:
         return norm.cdf(x)
     else:
         return 1 - norm.cdf(x)
@@ -139,7 +139,7 @@ def theoretical(data, args):
 
     sigma_a12_patrat = I_Fischer_inv[2][2]
 
-    dist_interval_2_1 = np.abs(k_alpha * C12 / C11 * np.sqrt(sigma_a12_patrat))
+    dist_interval_2_1 = k_alpha * C12 / C11 * np.sqrt(sigma_a12_patrat)
 
     low_2_1   = T2_1 - dist_interval_2_1
     upper_2_1 = T2_1 + dist_interval_2_1
@@ -184,7 +184,7 @@ def theoretical(data, args):
 
     sigma_a21_patrat = I_Fischer_inv[1][1]
 
-    dist_interval_1_2 = np.abs(k_alpha * C12 / C22 * np.sqrt(sigma_a21_patrat))
+    dist_interval_1_2 = k_alpha * C12 / C22 * np.sqrt(sigma_a21_patrat)
 
     low_1_2   = T1_2 - dist_interval_1_2
     upper_1_2 = T1_2 + dist_interval_1_2
@@ -224,7 +224,7 @@ def single_row_output(args, data, row, matrices):
                 logger.info(f" T {typ} nu difera semnificativ fata de 0. p_value = "
                 f"{p_value:.20f}  > {alpha} (alpha)")
         else: # T >= 0
-            p_value = 1 - norm.cdf(x)
+            # p_value = 1 - norm.cdf(x)
     
             if alpha >= p_value:
                 logger.info(f" T {typ} este semnificativ > 0 corespunzator nivelului de " 
