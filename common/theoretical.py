@@ -141,8 +141,8 @@ def theoretical(data, args):
 
     dist_interval_2_1 = k_alpha * C12 / C11 * np.sqrt(sigma_a12_patrat)
 
-    low_2_1   = T2_1 - dist_interval_2_1
-    upper_2_1 = T2_1 + dist_interval_2_1
+    low_2_1   = T2_1 - np.abs(dist_interval_2_1)
+    upper_2_1 = T2_1 + np.abs(dist_interval_2_1)
 
     ##################################################################################
 
@@ -186,8 +186,8 @@ def theoretical(data, args):
 
     dist_interval_1_2 = k_alpha * C12 / C22 * np.sqrt(sigma_a21_patrat)
 
-    low_1_2   = T1_2 - dist_interval_1_2
-    upper_1_2 = T1_2 + dist_interval_1_2
+    low_1_2   = T1_2 - np.abs(dist_interval_1_2)
+    upper_1_2 = T1_2 + np.abs(dist_interval_1_2)
 
     # Analyze data:
     T1_2_x = T1_2 / (C12 / C22 * np.sqrt(sigma_a21_patrat))
@@ -251,12 +251,12 @@ def single_row_output(args, data, row, matrices):
         # logger.info("")
 
     logger.info(f"Rezultate teoretice\n")
-    logger.info(f" T 1->2 : {row.loc[0, 'T12_theo']} \u00b1 {row.loc[0, 'T12_int_dist']}")
+    logger.info(f" T 1->2 : {row.loc[0, 'T12_theo']} \u00b1 {np.abs(row.loc[0, 'T12_int_dist'])}")
     logger.info(f"\tInterval de incredere: [{row.loc[0, 'T12_int_lower']}; {row.loc[0, 'T12_int_upper']}]\n")
 
     significance_text("1->2", row.loc[0, "T12_theo"], row.loc[0, "T12_x"], row.loc[0, "T12_pval"], args.alpha)
 
-    logger.info(f" T 2->1 : {row.loc[0, 'T21_theo']} \u00b1 {row.loc[0, 'T21_int_dist']}")
+    logger.info(f" T 2->1 : {row.loc[0, 'T21_theo']} \u00b1 {np.abs(row.loc[0, 'T21_int_dist'])}")
     logger.info(f"\tInterval de incredere: [{row.loc[0, 'T21_int_lower']}; {row.loc[0, 'T21_int_upper']}]\n")
 
     significance_text("2->1", row.loc[0, "T21_theo"], row.loc[0, "T21_x"], row.loc[0, "T21_pval"], args.alpha)
