@@ -54,6 +54,12 @@ class Pairing:
         return Pairing(x, y, start=start, end=end, shift=shift)
 
 
+    def reversed(self):
+        x = np.vstack([self.x_time[::-1], self.x[::-1]]).T
+        y = np.vstack([self.y_time[::-1], self.y[::-1]]).T
+        return Pairing(x, y)
+
+
     @classmethod
     def from_files(cls, x_file, y_file, **kwargs):
         logger.debug(f"Reading data from files x = {x_file} and y = {y_file}.")

@@ -5,6 +5,7 @@ import logging
 import common.linearity as lin
 import common.theoretical as theo
 import common.multiple as many
+import common.graph as graph
 from common.log import setup_logging
 
 
@@ -175,7 +176,144 @@ actions = {
                 "default": 1
             },
         }
-    }
+    },
+    "graph": {
+        "message": "Graph the raw data.",
+        "main": graph.main,
+        "output": graph.default_output_file,
+        "arguments": {
+            "x": {
+                "help": "Path to x data file",
+            },
+            "y": {
+                "help": "Path to y data file",
+                "default": None,
+                "nargs": '?'
+            },
+            "z": {
+                "help": "Path to z data file",
+                "default": None,
+                "nargs": '?'
+            },
+            "w": {
+                "help": "Path to w data file",
+                "default": None,
+                "nargs": '?'
+            },
+        },
+        "options": {
+            ("--start", "-s"): {
+                "help": "The start index for the analysis",
+                "type": int,
+                "default": 0
+            },
+            ("--end", "-e"): {
+                "help": "The end index for the analysis (non-inclusive)",
+                "type": int,
+                "default": None
+            },
+            ("--reverse", "-r"): {
+                "help": "Reverse data",
+                "type": bool,
+                "default": False
+            },
+            ("--t-conv", "-tc"): {
+                "help": "Conversion factor for time",
+                "type": float,
+                "default": 1
+            },
+            ("--t-unit", "-tu"): {
+                "help": "Unit of time",
+                "type": str,
+                "default": "kyr"
+            },
+            ("--t-label", "-tl"): {
+                "help": "Label time",
+                "type": str,
+                "default": "Time"
+            },
+            ("--x-conv", "-xc"): {
+                "help": "Conversion factor for x data",
+                "type": float,
+                "default": 1
+            },
+            ("--x-unit", "-xu"): {
+                "help": "Unit of x data",
+                "type": str,
+                "default": "unit"
+            },
+            ("--x-label", "-xl"): {
+                "help": "Label of x data",
+                "type": str,
+                "default": ""
+            },
+            ("--x-domain", "-xd"): {
+                "help": "Group for sharing y axis range",
+                "type": int,
+                "default": 1
+            },
+            ("--y-conv", "-yc"): {
+                "help": "Conversion factor for y data",
+                "type": float,
+                "default": 1
+            },
+            ("--y-unit", "-yu"): {
+                "help": "Unit of y data",
+                "type": str,
+                "default": "unit"
+            },
+            ("--y-label", "-yl"): {
+                "help": "Label of y data",
+                "type": str,
+                "default": ""
+            },
+            ("--y-domain", "-yd"): {
+                "help": "Group for sharing y axis range",
+                "type": int,
+                "default": 2
+            },
+            ("--z-conv", "-zc"): {
+                "help": "Conversion factor for z data",
+                "type": float,
+                "default": 1
+            },
+            ("--z-unit", "-zu"): {
+                "help": "Unit of z data",
+                "type": str,
+                "default": "unit"
+            },
+            ("--z-label", "-zl"): {
+                "help": "Label of z data",
+                "type": str,
+                "default": ""
+            },
+            ("--z-domain", "-zd"): {
+                "help": "Group for sharing y axis range",
+                "type": int,
+                "default": 3
+            },
+            ("--w-conv", "-wc"): {
+                "help": "Conversion factor for w data",
+                "type": float,
+                "default": 1
+            },
+            ("--w-unit", "-wu"): {
+                "help": "Unit of w data",
+                "type": str,
+                "default": "unit"
+            },
+            ("--w-label", "-wl"): {
+                "help": "Label of w data",
+                "type": str,
+                "default": ""
+            },
+            ("--w-domain", "-wd"): {
+                "help": "Group for sharing y axis range",
+                "type": int,
+                "default": 4
+            },
+        }
+    },
 }
 
 
