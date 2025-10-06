@@ -78,7 +78,7 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
 
 
 def main(args) -> None:
-    logger.info("Running linearity check.")
+    logger.info("Graphing data series.")
     
     logger.debug(f"Input arguments: {args}")
 

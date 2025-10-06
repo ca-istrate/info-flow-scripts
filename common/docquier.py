@@ -235,4 +235,4 @@ def compute_liang_nvar(x, dt, n_iter, conf):
 def docquier(data, args):
     logger.debug("Running bootstraping method")
     x = np.array([data.x, data.y])
-    return compute_liang_nvar(x, 1, args.bootstrap_iter, 1 - args.alpha)
+    return compute_liang_nvar(x, 1, args.bootstrap_iter, args.bootstrap_conf_val)

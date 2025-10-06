@@ -5,7 +5,8 @@ import logging
 import common.linearity as lin
 import common.theoretical as theo
 import common.multiple as many
-import common.graph as graph
+import common.graph_data as graph_data
+import common.graph_t as graph_t
 from common.log import setup_logging
 
 
@@ -177,10 +178,10 @@ actions = {
             },
         }
     },
-    "graph": {
+    "graph-data": {
         "message": "Graph the raw data.",
-        "main": graph.main,
-        "output": graph.default_output_file,
+        "main": graph_data.main,
+        "output": graph_data.default_output_file,
         "arguments": {
             "x": {
                 "help": "Path to x data file",
@@ -314,6 +315,48 @@ actions = {
             },
         }
     },
+    "graph-t": {
+        "message": "Graph the T values.",
+        "main": graph_t.main,
+        "output": graph_t.default_output_file,
+        "arguments": {
+            "csv": {
+                "help": "Path to csv result files",
+            },
+        },
+        "options": {
+            ("--reverse", "-r"): {
+                "help": "Reverse data",
+                "type": bool,
+                "default": False
+            },
+            ("--t-conv", "-tc"): {
+                "help": "Conversion factor for time",
+                "type": float,
+                "default": 1
+            },
+            ("--t-unit", "-tu"): {
+                "help": "Unit of time",
+                "type": str,
+                "default": "kyr"
+            },
+            ("--t-label", "-tl"): {
+                "help": "Label time",
+                "type": str,
+                "default": "Time"
+            },
+            ("--x-label", "-xl"): {
+                "help": "Label for first data series",
+                "type": str,
+                "default": "1"
+            },
+            ("--y-label", "-yl"): {
+                "help": "Label for second data series",
+                "type": str,
+                "default": "2"
+            },
+        }
+    }
 }
 
 
