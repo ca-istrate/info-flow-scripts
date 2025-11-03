@@ -330,6 +330,11 @@ actions = {
                 "type": bool,
                 "default": False
             },
+            ("--graph-by-shift", "-gs"): {
+                "help": "Use shift as x axis instead of time",
+                "type": bool,
+                "default": False
+            },
             ("--t-conv", "-tc"): {
                 "help": "Conversion factor for time",
                 "type": float,
