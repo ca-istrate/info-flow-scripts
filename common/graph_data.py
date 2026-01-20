@@ -24,24 +24,24 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
     plot_number = count * 100 + 10
 
     data_pairs = [
-        (data1.x, data1.x_time, args.x_conv, args.x_unit, args.x_label, args.x_domain),
-        (data1.y, data1.y_time, args.y_conv, args.y_unit, args.y_label, args.y_domain),
-        (data2.x, data2.x_time, args.z_conv, args.z_unit, args.z_label, args.z_domain),
-        (data2.y, data2.y_time, args.w_conv, args.w_unit, args.w_label, args.w_domain)
+        (data1.x, data1.x_time, args.x_conv, args.x_unit, args.x_label, args.x_domain, args.x_color),
+        (data1.y, data1.y_time, args.y_conv, args.y_unit, args.y_label, args.y_domain, args.y_color),
+        (data2.x, data2.x_time, args.z_conv, args.z_unit, args.z_label, args.z_domain, args.z_color),
+        (data2.y, data2.y_time, args.w_conv, args.w_unit, args.w_label, args.w_domain, args.w_color)
     ]
 
     axes = {}
 
-    for i, (data, time, conv, unit, label, domain) in enumerate(data_pairs):
+    for i, (data, time, conv, unit, label, domain, clr) in enumerate(data_pairs):
         if i + 1 > count:
             break
 
         axes[i] = (plt.subplot(plot_number+i+1, sharex=axes[0][0] if i != 0 else None), domain)
 
-        axes[i][0].plot(time * args.t_conv, data * conv)
+        axes[i][0].plot(time * args.t_conv, data * conv, color=clr)
 
         axes[i][0].set_ylabel(f"{label} ({unit})")
-        axes[i][0].grid(axis='x')
+        axes[i][0].grid(axis='x', which="both")
 
         if i != 0:
             axes[i][0].spines['top'].set_visible(False)
@@ -65,6 +65,10 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
 
     for ax, dom in axes.values():
         ax.set_ylim(*dom_lim[dom])
+
+    locs = axes[0][0].get_xticks()[1:-1]
+    new_locs = np.linspace(locs[0], locs[-1], len(locs) * 2 - 1)
+    axes[0][0].set_xticks(new_locs)
 
 
     plt.subplots_adjust(hspace=0)

@@ -253,6 +253,11 @@ actions = {
                 "type": int,
                 "default": 1
             },
+            ("--x-color", "-xcl"): {
+                "help": "Color for first data series",
+                "type": str,
+                "default": "tab:blue"
+            },
             ("--y-conv", "-yc"): {
                 "help": "Conversion factor for y data",
                 "type": float,
@@ -272,6 +277,11 @@ actions = {
                 "help": "Group for sharing y axis range",
                 "type": int,
                 "default": 2
+            },
+            ("--y-color", "-ycl"): {
+                "help": "Color for second data series",
+                "type": str,
+                "default": "tab:red"
             },
             ("--z-conv", "-zc"): {
                 "help": "Conversion factor for z data",
@@ -293,6 +303,11 @@ actions = {
                 "type": int,
                 "default": 3
             },
+            ("--z-color", "-zcl"): {
+                "help": "Color for third data series",
+                "type": str,
+                "default": "tab:orange"
+            },
             ("--w-conv", "-wc"): {
                 "help": "Conversion factor for w data",
                 "type": float,
@@ -312,6 +327,11 @@ actions = {
                 "help": "Group for sharing y axis range",
                 "type": int,
                 "default": 4
+            },
+            ("--w-color", "-wcl"): {
+                "help": "Color for fourth data series",
+                "type": str,
+                "default": "tab:green"
             },
         }
     },
@@ -335,6 +355,11 @@ actions = {
                 "type": bool,
                 "default": False
             },
+            ("--legend-location", "-ll"): {
+                "help": "Where to put the legend of the tau graph",
+                "type": str,
+                "default": "best"
+            },
             ("--t-conv", "-tc"): {
                 "help": "Conversion factor for time",
                 "type": float,
@@ -355,10 +380,20 @@ actions = {
                 "type": str,
                 "default": "1"
             },
+            ("--x-color", "-xc"): {
+                "help": "Color for first data series",
+                "type": str,
+                "default": "tab:blue"
+            },
             ("--y-label", "-yl"): {
                 "help": "Label for second data series",
                 "type": str,
                 "default": "2"
+            },
+            ("--y-color", "-yc"): {
+                "help": "Color for second data series",
+                "type": str,
+                "default": "tab:orange"
             },
         }
     }

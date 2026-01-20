@@ -42,8 +42,8 @@ def plot_one(args, data: pd.DataFrame):
 
     ax.axhline(y=0, ls="--", lw=0.5, c="black")
 
-    ax.errorbar(midpoint + offset, data.loc[:, 'T12_theo'], yerr=np.abs(data.loc[:, 'T12_int_dist']), fmt="o", label=r"$T_{" +f"{args.x_label}" + "-" + f"{args.y_label}" + r"}$")
-    ax.errorbar(midpoint - offset, data.loc[:, 'T21_theo'], yerr=np.abs(data.loc[:, 'T21_int_dist']), fmt="o", label=r"$T_{" +f"{args.y_label}" + "-" + f"{args.x_label}" + r"}$")
+    ax.errorbar(midpoint + offset, data.loc[:, 'T12_theo'], yerr=np.abs(data.loc[:, 'T12_int_dist']), fmt="o", label=r"$T_{" +f"{args.x_label}" + "-" + f"{args.y_label}" + r"}$", color=args.x_color)
+    ax.errorbar(midpoint - offset, data.loc[:, 'T21_theo'], yerr=np.abs(data.loc[:, 'T21_int_dist']), fmt="o", label=r"$T_{" +f"{args.y_label}" + "-" + f"{args.x_label}" + r"}$", color=args.y_color)
 
     ax.set_ylabel("Absolute information flow (nats/ut)")
     ax.spines['bottom'].set_visible(False)
@@ -54,13 +54,25 @@ def plot_one(args, data: pd.DataFrame):
 
     ax2 = plt.subplot(212, sharex=ax)
     ax2.axhline(y=0, ls="--", lw=0.5, c="black")
-    ax2.errorbar(midpoint + offset, data.loc[:, 'tau12'], yerr=np.abs(data.loc[:, 'error_tau12']) * 1.96, fmt="o", label=r"$\tau_{" +f"{args.x_label}" + "-" + f"{args.y_label}" + r"}$")
-    ax2.errorbar(midpoint - offset, data.loc[:, 'tau21'], yerr=np.abs(data.loc[:, 'error_tau21']) * 1.96, fmt="o", label=r"$\tau_{" +f"{args.y_label}" + "-" + f"{args.x_label}" + r"}$")
+    ax2.errorbar(midpoint + offset, data.loc[:, 'tau12'], yerr=np.abs(data.loc[:, 'error_tau12']) * 1.96, fmt="o", label=r"$\tau_{" +f"{args.x_label}" + "-" + f"{args.y_label}" + r"}$", color=args.x_color)
+    ax2.errorbar(midpoint - offset, data.loc[:, 'tau21'], yerr=np.abs(data.loc[:, 'error_tau21']) * 1.96, fmt="o", label=r"$\tau_{" +f"{args.y_label}" + "-" + f"{args.x_label}" + r"}$", color=args.y_color)
     ax2.set_ylabel("Relative information flow (%)")
     ax2.set_xticks(midpoint[::2], labels[::2])
     ax2.set_xlabel(f"{args.t_label} ({args.t_unit})")
     ax2.spines['top'].set_visible(False)
-    ax2.legend()
+
+    if args.graph_by_shift:
+        ax3 = ax2.twinx()
+        ax3.scatter(midpoint, data.loc[:, 'R12'], marker="x", label="R", color="black")
+        ax3.set_ylabel("Correlation Coefficient (R)")
+        ax3.spines['top'].set_visible(False)
+        lines3, labels3 = ax3.get_legend_handles_labels()
+    else:
+        lines3, labels3 = [], []
+
+
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax2.legend(lines2 + lines3, labels2 + labels3, loc=args.legend_location)
 
     plt.subplots_adjust(hspace=0)
     if args.reverse:
