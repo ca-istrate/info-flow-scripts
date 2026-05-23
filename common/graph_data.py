@@ -10,6 +10,8 @@ from common.pairing import Pairing
 
 logger = logging.getLogger("script")
 
+INCH_TO_CM = 2.54 
+
 def default_output_file(args) -> None:
     inp = os.path.splitext(os.path.basename(args.x))[0]
     inp += "-" + os.path.splitext(os.path.basename(args.y))[0] if args.y is not None else ""
@@ -21,6 +23,13 @@ def default_output_file(args) -> None:
 
 def plot_data(args, data1: Pairing, data2: Pairing, count):
 
+    plt.rcParams.update({
+        # "text.usetex": True,
+        "font.size": 11,
+        "font.family": "serif",
+        "font.serif": ["Times New Roman"]
+    })
+
     plot_number = count * 100 + 10
 
     data_pairs = [
@@ -30,6 +39,8 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
         (data2.y, data2.y_time, args.w_conv, args.w_unit, args.w_label, args.w_domain, args.w_color)
     ]
 
+
+    fig = plt.figure(1)
     axes = {}
 
     for i, (data, time, conv, unit, label, domain, clr) in enumerate(data_pairs):
@@ -38,9 +49,9 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
 
         axes[i] = (plt.subplot(plot_number+i+1, sharex=axes[0][0] if i != 0 else None), domain)
 
-        axes[i][0].plot(time * args.t_conv, data * conv, color=clr)
+        axes[i][0].plot(time * args.t_conv, data * conv, color=clr, label=f"{label} ({unit})")
 
-        axes[i][0].set_ylabel(f"{label} ({unit})")
+        # axes[i][0].set_ylabel(f"{label} ({unit})")
         axes[i][0].grid(axis='x', which="both")
 
         if i != 0:
@@ -70,13 +81,24 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
     new_locs = np.linspace(locs[0], locs[-1], len(locs) * 2 - 1)
     axes[0][0].set_xticks(new_locs)
 
+    plt.figlegend(loc="upper center", ncols=4, columnspacing=1, handleheight=1, edgecolor="white")
 
-    plt.subplots_adjust(hspace=0)
+    # fig = plt.gcf()
+    # fig.set_size_inches(16.5 / INCH_TO_CM, 8.5 / INCH_TO_CM)
+    fig.set_size_inches(args.fig_width / INCH_TO_CM, args.fig_height / INCH_TO_CM)
+    fig.subplots_adjust(bottom=args.fig_margin_bottom, top=args.fig_margin_top, hspace=args.fig_margin_hspace,
+                        left=args.fig_margin_left, right=args.fig_margin_right)
+    # fig.set_layout_engine("constrained")
+
+
+    # fig.subplots_adjust(left=0.1, bottom=0.15, right=0.975, top=0.8, hspace=0)
 
     if args.reverse:
         plt.gca().invert_xaxis()
 
-    plt.show()
+    fig.savefig(f'{args.output_file}.svg', dpi=200)
+    if args.plot_show is "True":
+        plt.show()
     
 
 

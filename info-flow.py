@@ -333,6 +333,46 @@ actions = {
                 "type": str,
                 "default": "tab:green"
             },
+            ("--fig-height", "-fh"): {
+                "help": "Height of the resulting figure in inches",
+                "type": float,
+                "default": 8.5
+            },
+            ("--fig-width", "-fw"): {
+                "help": "Width of the resulting figure in inches",
+                "type": float,
+                "default": 16.5
+            },
+            ("--fig-margin-bottom", "-fmb"): {
+                "help": "Bottom margin for plot",
+                "type": float,
+                "default": 0.15
+            },
+            ("--fig-margin-top", "-fmt"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.80
+            },
+            ("--fig-margin-left", "-fml"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.1
+            },
+            ("--fig-margin-right", "-fmr"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.975
+            },
+            ("--fig-margin-hspace", "-fmh"): {
+                "help": "Padding between plots",
+                "type": float,
+                "default": 0
+            },
+            ("--plot-show", "-ps"): {
+                "help": "Show plot in interactive view",
+                "type": str,
+                "default": "True"
+            },
         }
     },
     "graph-t": {
@@ -394,6 +434,51 @@ actions = {
                 "help": "Color for second data series",
                 "type": str,
                 "default": "tab:orange"
+            },
+            ("--plot-r", "-pr"): {
+                "help": "Plot the correlation coefficient R",
+                "type": bool,
+                "default": True
+            },
+            ("--plot-legend", "-pl"): {
+                "help": "Plot the correlation coefficient R",
+                "type": str,
+                "default": "True"
+            },
+            ("--marker-size", "-ms"): {
+                "help": "Size of the R coefficient markers",
+                "type": float,
+                "default": 15
+            },
+            ("--fig-height", "-fh"): {
+                "help": "Height of the resulting figure in inches",
+                "type": float,
+                "default": 8.5
+            },
+            ("--fig-width", "-fw"): {
+                "help": "Width of the resulting figure in inches",
+                "type": float,
+                "default": 16.5
+            },
+            ("--fig-margin-bottom", "-fmb"): {
+                "help": "Bottom margin for plot",
+                "type": float,
+                "default": 0.15
+            },
+            ("--fig-margin-top", "-fmt"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.80
+            },
+            ("--fig-margin-hspace", "-fmh"): {
+                "help": "Padding between plots",
+                "type": float,
+                "default": 0
+            },
+            ("--plot-show", "-ps"): {
+                "help": "Show plot in interactive view",
+                "type": str,
+                "default": "True"
             },
         }
     }
