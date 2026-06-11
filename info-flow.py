@@ -7,6 +7,8 @@ import common.theoretical as theo
 import common.multiple as many
 import common.graph_data as graph_data
 import common.graph_t as graph_t
+import common.graph_ccm_lag as graph_ccm_lag
+import common.graph_ccm_conv as graph_ccm_conv
 from common.log import setup_logging
 
 
@@ -474,6 +476,180 @@ actions = {
                 "help": "Padding between plots",
                 "type": float,
                 "default": 0
+            },
+            ("--plot-show", "-ps"): {
+                "help": "Show plot in interactive view",
+                "type": str,
+                "default": "True"
+            },
+        }
+    },
+    "graph-ccm-lag": {
+        "message": "Graph CCM lag values.",
+        "main": graph_ccm_lag.main,
+        "output": graph_ccm_lag.default_output_file,
+        "arguments": {
+            "csv": {
+                "help": "Path to csv file",
+            },
+        },
+        "options": {
+            ("--marker-size", "-ms"): {
+                "help": "Size of the R coefficient markers",
+                "type": float,
+                "default": 15
+            },
+            ("--t-conv", "-tc"): {
+                "help": "Conversion factor for time",
+                "type": float,
+                "default": 1
+            },
+            ("--t-unit", "-tu"): {
+                "help": "Unit of time",
+                "type": str,
+                "default": "kyr"
+            },
+            ("--t-label", "-tl"): {
+                "help": "Label time",
+                "type": str,
+                "default": "Time"
+            },
+            ("--x-label", "-xl"): {
+                "help": "Label for first data series",
+                "type": str,
+                "default": "1"
+            },
+            ("--x-color", "-xc"): {
+                "help": "Color for first data series",
+                "type": str,
+                "default": "tab:blue"
+            },
+            ("--y-plot", "-yp"): {
+                "help": "Whether to show the data for y",
+                "type": str,
+                "default": "True"
+            },
+            ("--y-label", "-yl"): {
+                "help": "Label for second data series",
+                "type": str,
+                "default": "2"
+            },
+            ("--y-color", "-yc"): {
+                "help": "Color for second data series",
+                "type": str,
+                "default": "tab:orange"
+            },
+            ("--bootstrap-color", "-bc"): {
+                "help": "Color of the bootstrap significance value area",
+                "type": str,
+                "default": "dimgray"
+            },
+            ("--ebisuzaki-color", "-ec"): {
+                "help": "Color of the Ebisuzaki significance value area",
+                "type": str,
+                "default": "lightgray"
+            },
+            ("--fig-height", "-fh"): {
+                "help": "Height of the resulting figure in inches",
+                "type": float,
+                "default": 8.5
+            },
+            ("--fig-width", "-fw"): {
+                "help": "Width of the resulting figure in inches",
+                "type": float,
+                "default": 16.5
+            },
+            ("--fig-margin-bottom", "-fmb"): {
+                "help": "Bottom margin for plot",
+                "type": float,
+                "default": 0.15
+            },
+            ("--fig-margin-top", "-fmt"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.80
+            },
+            ("--fig-margin-hspace", "-fmh"): {
+                "help": "Padding between plots",
+                "type": float,
+                "default": 0
+            },
+            ("--fig-margin-left", "-fml"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.1
+            },
+            ("--fig-margin-right", "-fmr"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.975
+            },
+            ("--plot-show", "-ps"): {
+                "help": "Show plot in interactive view",
+                "type": str,
+                "default": "True"
+            },
+        }
+    },
+    "graph-ccm-conv": {
+        "message": "Graph CCM convergence.",
+        "main": graph_ccm_conv.main,
+        "output": graph_ccm_conv.default_output_file,
+        "arguments": {
+            "csv": {
+                "help": "Path to csv file",
+            },
+        },
+        "options": {
+            ("--bootstrap-color", "-bc"): {
+                "help": "Color of the bootstrap significance value area",
+                "type": str,
+                "default": "dimgray"
+            },
+            ("--ebisuzaki-color", "-ec"): {
+                "help": "Color of the Ebisuzaki significance value area",
+                "type": str,
+                "default": "lightgray"
+            },
+            ("--x-color", "-xc"): {
+                "help": "Color for first data series",
+                "type": str,
+                "default": "tab:blue"
+            },
+            ("--fig-height", "-fh"): {
+                "help": "Height of the resulting figure in inches",
+                "type": float,
+                "default": 8.5
+            },
+            ("--fig-width", "-fw"): {
+                "help": "Width of the resulting figure in inches",
+                "type": float,
+                "default": 16.5
+            },
+            ("--fig-margin-bottom", "-fmb"): {
+                "help": "Bottom margin for plot",
+                "type": float,
+                "default": 0.15
+            },
+            ("--fig-margin-top", "-fmt"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.80
+            },
+            ("--fig-margin-hspace", "-fmh"): {
+                "help": "Padding between plots",
+                "type": float,
+                "default": 0
+            },
+            ("--fig-margin-left", "-fml"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.1
+            },
+            ("--fig-margin-right", "-fmr"): {
+                "help": "Top margin for plot",
+                "type": float,
+                "default": 0.975
             },
             ("--plot-show", "-ps"): {
                 "help": "Show plot in interactive view",

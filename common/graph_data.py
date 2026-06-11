@@ -27,7 +27,9 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
         # "text.usetex": True,
         "font.size": 11,
         "font.family": "serif",
-        "font.serif": ["Times New Roman"]
+        "font.serif": ["Times New Roman"],
+        "text.usetex": True,
+        "text.latex.preamble": r"\usepackage{amsmath}\usepackage{lmodern}\usepackage{mhchem}\usepackage{textcomp}"
     })
 
     plot_number = count * 100 + 10

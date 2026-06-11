@@ -37,7 +37,9 @@ def plot_one(args, data: pd.DataFrame):
         "mathtext.default": "bf",
         "font.size": 11,
         "font.family": "serif",
-        "font.serif": ["Times New Roman"]
+        "font.serif": ["Times New Roman"],
+        "text.usetex": True,
+        "text.latex.preamble": r"\usepackage{amsmath}\usepackage{lmodern}\usepackage{mhchem}\usepackage{textcomp}"
     })
 
 
@@ -106,7 +108,7 @@ def plot_one(args, data: pd.DataFrame):
 
     if positive_tau1_pairing:
         _, t, x, x_err = zip(*positive_tau1_pairing)
-        ax2.errorbar(np.array(t), np.array(x), np.array(x_err), fmt="s", label=r"$\mathrm{\tau_{" +f"{args.x_label}" + r"\rightarrow " + f"{args.y_label}" + r"}}$", color=args.x_color, markersize=3)
+        ax2.errorbar(np.array(t), np.array(x), np.array(x_err), fmt="s", color=args.x_color, markersize=3)
 
     if negative_tau1_pairing:
         _, t, x, x_err = zip(*negative_tau1_pairing)
@@ -118,7 +120,7 @@ def plot_one(args, data: pd.DataFrame):
 
     if negative_tau2_pairing:
         _, t, y, y_err = zip(*negative_tau2_pairing)
-        ax2.errorbar(np.array(t), np.array(y), np.array(y_err), fmt="s", label=r"$\mathrm{\tau_{" +f"{args.y_label}" + r"\rightarrow " + f"{args.x_label}" + r"}}$", color=args.y_color, markersize=3)
+        ax2.errorbar(np.array(t), np.array(y), np.array(y_err), fmt="s", color=args.y_color, markersize=3)
 
     if positive_tau2_pairing:
         _, t, y, y_err = zip(*positive_tau2_pairing)
@@ -145,8 +147,8 @@ def plot_one(args, data: pd.DataFrame):
 
 
     lines = [
-        Line2D([], [], marker='_', color=args.x_color, markersize=args.marker_size, linestyle='None', label=r"$\mathrm{" + f"{args.x_label}" + r"\rightarrow " + f"{args.y_label}" + r"}$"),
-        Line2D([], [], marker='_', color=args.y_color, markersize=args.marker_size, linestyle='None', label=r"$\mathrm{" + f"{args.y_label}" + r"\rightarrow " + f"{args.x_label}" + r"}$"),
+        Line2D([], [], marker='_', color=args.x_color, markersize=args.marker_size, linestyle='None', label=f"${args.x_label}" + r"\rightarrow " + f"{args.y_label}$" ),
+        Line2D([], [], marker='_', color=args.y_color, markersize=args.marker_size, linestyle='None', label=f"${args.y_label}" + r"\rightarrow " + f"{args.x_label}$"),
     ]
     labels = [
         "placeholder",
