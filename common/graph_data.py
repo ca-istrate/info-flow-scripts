@@ -51,6 +51,7 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
 
         axes[i] = (plt.subplot(plot_number+i+1, sharex=axes[0][0] if i != 0 else None), domain)
 
+        axes[i][0].axhline(y=0, ls="--", lw=0.5, c="black")
         axes[i][0].plot(time * args.t_conv, data * conv, color=clr, label=f"{label} ({unit})")
 
         # axes[i][0].set_ylabel(f"{label} ({unit})")
