@@ -103,6 +103,11 @@ actions = {
                 "type": float,
                 "default": 0.05
             },
+            ("--moving-block-bootstrap", "-mbb"): {
+                "help": "Use MBB instead of the regular bootstrap algorithm.",
+                "type": bool,
+                "default": False
+            },
             ("--bootstrap-iter", "-b"): {
                 "help": "Number of bootstraping rounds to perform.",
                 "type": int,
@@ -113,6 +118,12 @@ actions = {
                 "type": float,
                 "default": 1.96
             },
+            ("--bootstrap-block-size", "-z"): {
+                "help": "Only for MBB. Size of bootstrap block to be used.",
+                "type": int,
+                "default": 10
+            },
+
         }
     },
     "analyze-many": {

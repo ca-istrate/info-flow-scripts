@@ -19,13 +19,52 @@ import logging
 
 import pandas as pd
 import numpy as np
+import math
 from sklearn.utils import resample
 
 
 logger = logging.getLogger("script")
 
 
-def compute_liang_nvar(x, dt, n_iter, conf):
+def block_bootstrap_model(ts, block_size: int = 10, random_state: int | np.random.Generator | None = None):
+
+    values = np.asarray(ts)
+
+    if values.ndim != 1:
+        raise ValueError("ts must be a one-dimensional time series")
+
+    n = values.size
+    if n == 0:
+        raise ValueError("ts must contain at least one observation")
+    if not isinstance(block_size, (int, np.integer)) or block_size < 1:
+        raise ValueError("block_size must be a positive integer")
+    if block_size > n:
+        raise ValueError("block_size cannot exceed the length of ts")
+
+    rng = (
+        random_state
+        if isinstance(random_state, np.random.Generator)
+        else np.random.default_rng(random_state)
+    )
+    n_blocks = math.ceil(n / block_size)
+
+    # Upper bound is exclusive. This samples all valid starts from
+    # 0 through n - block_size, corresponding to R's
+    # 1:(n - block_size + 1).
+    block_starts = rng.integers(
+        low=0,
+        high=n - block_size + 1,
+        size=n_blocks,
+    )
+
+    surrogate = np.concatenate(
+        [values[start : start + block_size] for start in block_starts]
+    )
+
+    return surrogate[:n]
+
+
+def compute_liang_nvar(x, dt, n_iter, conf, args):
     # Function to compute absolute transfer of information from xj to xi (T)
     def compute_liang_index(detC, Deltajk, Ckdi, Cij, Cii):
         T = (1. / detC) * np.sum(Deltajk * Ckdi) * (
@@ -112,10 +151,11 @@ def compute_liang_nvar(x, dt, n_iter, conf):
     boot_R = np.zeros((n_iter, nvar, nvar))
 
     for it in np.arange(n_iter):  # loop over realizations
-
+        
         # Resample x and dx
         index = np.arange(N)
-        boot_index = resample(index, replace=True)
+        boot_index = block_bootstrap_model(index, args.bootstrap_block_size) if args.moving_block_bootstrap else resample(index, replace=True) 
+        logger.debug(boot_index)
         boot_x = np.zeros((nvar, N))
         boot_dx = np.zeros((nvar, N))
         for t in np.arange(N):
@@ -235,4 +275,4 @@ def compute_liang_nvar(x, dt, n_iter, conf):
 def docquier(data, args):
     logger.debug("Running bootstraping method")
     x = np.array([data.x, data.y])
-    return compute_liang_nvar(x, 1, args.bootstrap_iter, args.bootstrap_conf_val)
+    return compute_liang_nvar(x, 1, args.bootstrap_iter, args.bootstrap_conf_val, args)
