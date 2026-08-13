@@ -100,7 +100,7 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
         plt.gca().invert_xaxis()
 
     fig.savefig(f'{args.output_file}.svg', dpi=200)
-    if args.plot_show is "True":
+    if args.plot_show == "True":
         plt.show()
     
 
