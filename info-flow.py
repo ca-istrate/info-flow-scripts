@@ -386,6 +386,11 @@ actions = {
                 "type": str,
                 "default": "True"
             },
+            ("--use-tex", "-ut"): {
+                "help": "Use local instalation of LaTeX (tex) for graphs",
+                "type": str,
+                "default": "False"
+            },
         }
     },
     "graph-t": {
@@ -492,6 +497,11 @@ actions = {
                 "help": "Show plot in interactive view",
                 "type": str,
                 "default": "True"
+            },
+            ("--use-tex", "-ut"): {
+                "help": "Use local instalation of LaTeX (tex) for graphs",
+                "type": str,
+                "default": "False"
             },
         }
     },
@@ -600,6 +610,11 @@ actions = {
                 "type": str,
                 "default": "True"
             },
+            ("--use-tex", "-ut"): {
+                "help": "Use local instalation of LaTeX (tex) for graphs",
+                "type": str,
+                "default": "False"
+            },
         }
     },
     "graph-ccm-conv": {
@@ -666,6 +681,11 @@ actions = {
                 "help": "Show plot in interactive view",
                 "type": str,
                 "default": "True"
+            },
+            ("--use-tex", "-ut"): {
+                "help": "Use local instalation of LaTeX (tex) for graphs",
+                "type": str,
+                "default": "False"
             },
         }
     }

@@ -28,7 +28,7 @@ def plot_data(args, data1: Pairing, data2: Pairing, count):
         "font.size": 11,
         "font.family": "serif",
         "font.serif": ["Times New Roman"],
-        "text.usetex": True,
+        "text.usetex": args.use_tex == "True",
         "text.latex.preamble": r"\usepackage{amsmath}\usepackage{lmodern}\usepackage{mhchem}\usepackage{textcomp}"
     })
 
